@@ -49,7 +49,7 @@ Pull requests are welcomed. For changes, please open an issue first to discuss w
 
 
 ## License
-
+[MIT](https://choosealicense.com/licenses/mit/)
 
 
 
