@@ -8,6 +8,7 @@
 
 import pygame
 import pytmx #Library for tiled maps
+from pytmx import load_pygame
 pygame.init()
 
 #Colors
@@ -36,38 +37,38 @@ MOUSE = pygame.mouse.get_pos()
 pygame.display.set_caption('Luna')
 font = pygame.font.Font('freesansbold.ttf', 32)
 
+
+# Maybe use as text bubble/ front page?
 # A text suface object, on which text is drawn on it.
-text = font.render('Luna', True, green, blue)
-
+#text = font.render('Luna', True, green, blue)
 # Create a rectangular object for the text surface object
-textRect = text.get_rect()
-textRect.center = (DISPLAY_WIDTH // 2, DISPLAY_HEIGHT // 2)
+#textRect = text.get_rect()
+#textRect.center = (800 // 2, 600 // 2)
 
 
-# To load the map using tmx file extn.
-gameMap = load_pygame("isometric_grass_and_water.tmx")
+#A function that sets up the tile map 
+def map_setup():
+    global image
 
-#Creates a list of single tiles in first layer of the map
-images = []
-for y in range(50):
-    for x in range(50):
-        image = gameMap.get_tile_image(x,y,0)
-        images.append(image)
+    # Getting / Importing the map
+    tmxdata = load_pygame("isometric_grass_and_water.tmx")
+    width = tmxdata.width * tmxdata.tilewidth
+    height = tmxdata.height * tmxdata.tileheight
 
-
-#displays tiles in locations
-i = 0
-for y in range(50):
-    for x in range(50):
-        screen.blit(images[i],(x*32,y*32))
-        i += 1
+    ti = tmxdata.get_tile_image_by_gid
+    for layer in tmxdata.visible_layers:
+        if isinstance(layer, TiledTileLayer):
+            for x, y, gid, in layer:
+                tile = ti(gid)
+                if tile:
+                    image = tmxdata.get_tile_image(x, y, layer)
 
 # Infinite loop of the game -> Add buttons behaviors and mouse controls
 while True:
     Screen.fill(white)
 
     # Copying the text surface object to the display surface object at the center coordinate.
-    Screen.blit(text, textRect)
+#    Screen.blit(text, textRect)
 
     # Iterate over the list of Event objects
     # that was returned by pygame.event.get() method.
