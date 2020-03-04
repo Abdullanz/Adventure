@@ -15,12 +15,9 @@ white = (255, 255, 255)
 green = (0, 255, 0)
 blue = (0, 0, 128)
 
-# Assigning values to X and Y variable
-DISPLAY_WIDTH = 800
-DISPLAY_HEIGHT = 600
+Screen_size = (800, 600)
 
-#Screen size
-Screen = pygame.display.set_mode((DISPLAY_WIDTH, DISPLAY_HEIGHT),pygame.FULLSCREEN)
+Screen = pygame.display.set_mode(Screen_size,pygame.FULLSCREEN)
 #Controls
 Keys = pygame.key.get_pressed()
 MOUSE = pygame.mouse.get_pos()
@@ -47,8 +44,23 @@ textRect = text.get_rect()
 textRect.center = (DISPLAY_WIDTH // 2, DISPLAY_HEIGHT // 2)
 
 
-#
+# To load the map using tmx file extn.
+gameMap = load_pygame("isometric_grass_and_water.tmx")
 
+#Creates a list of single tiles in first layer of the map
+images = []
+for y in range(50):
+    for x in range(50):
+        image = gameMap.get_tile_image(x,y,0)
+        images.append(image)
+
+
+#displays tiles in locations
+i = 0
+for y in range(50):
+    for x in range(50):
+        screen.blit(images[i],(x*32,y*32))
+        i += 1
 
 # Infinite loop of the game -> Add buttons behaviors and mouse controls
 while True:
