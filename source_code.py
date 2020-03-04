@@ -1,47 +1,63 @@
 # ###############################################################################
-# #  Description: Interactive fiction experiment with a simple interactive story
+# #  Description: Luna game with a simple interactive story
 # #  Author: Abdullah Najjar
-# #  Date: 25 November, 2019
+# #  Date: 4 March, 2020
+# #  Version: 0.1
 # ###############################################################################
-# import pygame module in this program
-import pygame
+## NOTE: Experiment with tile maps seems fun!!
 
+import pygame
+import pytmx #Library for tiled maps
 pygame.init()
 
+#Colors
 white = (255, 255, 255)
 green = (0, 255, 0)
 blue = (0, 0, 128)
 
-# assigning values to X and Y variable
-winWidth = 800
-winLength = 800
+# Assigning values to X and Y variable
+DISPLAY_WIDTH = 800
+DISPLAY_HEIGHT = 600
 
-# create the display surface object
-# of specific dimension..e(X, Y).
-display_surface = pygame.display.set_mode((winWidth, winLength ))
+#Screen size
+Screen = pygame.display.set_mode((DISPLAY_WIDTH, DISPLAY_HEIGHT),pygame.FULLSCREEN)
+#Controls
+Keys = pygame.key.get_pressed()
+MOUSE = pygame.mouse.get_pos()
 
-# set window name
-pygame.display.set_caption('Interactive fiction')
+
+#Buttons -> Add the photos to images file
+#Config_Button = [pygame.image.load(r"C:\Users\Config.png"),
+#                    pygame.image.load(r"C:\Users\Config_Over.png")]
+#Play_Button = [pygame.image.load(r"C:\Users\Play.png"),
+#                pygame.image.load(r"C:\Users\Play_Over.png")]
+#Exit_Button = [pygame.image.load(r"C:\Users\Exit.png"),
+#                pygame.image.load(r"C:\Users\Exit_Over.png")]
+
+
+# Set window name & font -> Change font
+pygame.display.set_caption('Luna')
 font = pygame.font.Font('freesansbold.ttf', 32)
 
-# create a text suface object,
-# on which text is drawn on it.
+# A text suface object, on which text is drawn on it.
 text = font.render('Luna', True, green, blue)
 
-# create a rectangular object for the
-# text surface object
+# Create a rectangular object for the text surface object
 textRect = text.get_rect()
-textRect.center = (winWidth // 2, winLength // 2)
+textRect.center = (DISPLAY_WIDTH // 2, DISPLAY_HEIGHT // 2)
 
-# infinite loop
+
+#
+
+
+# Infinite loop of the game -> Add buttons behaviors and mouse controls
 while True:
-    display_surface.fill(white)
+    Screen.fill(white)
 
-    # copying the text surface object to the display surface object
-    # at the center coordinate.
-    display_surface.blit(text, textRect)
+    # Copying the text surface object to the display surface object at the center coordinate.
+    Screen.blit(text, textRect)
 
-    # iterate over the list of Event objects
+    # Iterate over the list of Event objects
     # that was returned by pygame.event.get() method.
     for event in pygame.event.get():
 
@@ -52,10 +68,3 @@ while True:
             quit()
         # Draws the surface object to the screen.
         pygame.display.update()
-        
-#A method to quit the game
-# def quitgame():
-#     pygame.quit()
-#     quit()
-#
-# quitgame()
