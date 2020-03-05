@@ -6,10 +6,9 @@
 # ###############################################################################
 ## NOTE: Experiment with tile maps seems fun!!
 
-import pygame
-import pytmx #Library for tiled maps
-from pytmx import load_pygame
-pygame.init()
+import pygame as pg
+from pytmx import load_pygame #Library for tiled maps
+pg.init()
 
 #Colors
 white = (255, 255, 255)
@@ -18,10 +17,10 @@ blue = (0, 0, 128)
 
 Screen_size = (800, 600)
 
-Screen = pygame.display.set_mode(Screen_size,pygame.FULLSCREEN)
+Screen = pg.display.set_mode(Screen_size,pg.FULLSCREEN)
 #Controls
-Keys = pygame.key.get_pressed()
-MOUSE = pygame.mouse.get_pos()
+Keys = pg.key.get_pressed()
+MOUSE = pg.mouse.get_pos()
 
 
 #Buttons -> Add the photos to images file
@@ -34,8 +33,8 @@ MOUSE = pygame.mouse.get_pos()
 
 
 # Set window name & font -> Change font
-pygame.display.set_caption('Luna')
-font = pygame.font.Font('freesansbold.ttf', 32)
+pg.display.set_caption('Luna')
+font = pg.font.Font('freesansbold.ttf', 32)
 
 
 # Maybe use as text bubble/ front page?
@@ -46,12 +45,12 @@ font = pygame.font.Font('freesansbold.ttf', 32)
 #textRect.center = (800 // 2, 600 // 2)
 
 
-#A function that sets up the tile map 
+#A function that sets up the tile map
 def map_setup():
     global image
 
-    # Getting / Importing the map
-    tmxdata = load_pygame("isometric_grass_and_water.tmx")
+    #Importing the map
+    tmxdata = load_pygame("Images/isometric_grass_and_water.tmx")
     width = tmxdata.width * tmxdata.tilewidth
     height = tmxdata.height * tmxdata.tileheight
 
@@ -61,7 +60,7 @@ def map_setup():
             for x, y, gid, in layer:
                 tile = ti(gid)
                 if tile:
-                    image = tmxdata.get_tile_image(x, y, layer)
+                    image = tmxdata.get_tile_image(0, 1, layer)
 
 # Infinite loop of the game -> Add buttons behaviors and mouse controls
 while True:
@@ -72,12 +71,12 @@ while True:
 
     # Iterate over the list of Event objects
     # that was returned by pygame.event.get() method.
-    for event in pygame.event.get():
+    for event in pg.event.get():
 
         # if event object type is QUIT then quitting the pygame and program.
-        if event.type == pygame.QUIT:
+        if event.type == pg.QUIT:
             # deactivates pygame library
-            pygame.quit()
+            pg.quit()
             quit()
         # Draws the surface object to the screen.
-        pygame.display.update()
+        pg.display.update()
