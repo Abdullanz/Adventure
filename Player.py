@@ -5,11 +5,21 @@
 # #  Version: 0.1
 # ###############################################################################
 import pygame as pg
-class Player():
+
+
+class Player(self):
+    """This is character with heatlh"""
+
+    #Health of the player character
+    MIN_HEALTH = 0
+    MAX_HEALTH = 100
+
+    #Check character if alive
+    def isAlive(self):
+        return self.health > self.MIN_HEALTH
 
     #Controls
-    Keys = pg.key.get_pressed()
-    MOUSE = pg.mouse.get_pos()
+    Keys = pg.key.get_pressed() #I need it here too probably
 
     # this is the move method within the player class
     def move(self, x_change, y_change):
