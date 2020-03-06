@@ -18,9 +18,7 @@ blue = (0, 0, 128)
 Screen_size = (800, 600)
 
 Screen = pg.display.set_mode(Screen_size,pg.FULLSCREEN)
-#Controls
-Keys = pg.key.get_pressed()
-MOUSE = pg.mouse.get_pos()
+
 
 
 #Buttons -> Add the photos to images file
