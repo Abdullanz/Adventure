@@ -1,4 +1,4 @@
-# simple_Interactive_fiction_pygame
+# Adventure
 A simple 2D game that I am making to focus on the interactive aspect of storytelling, my goal here is to learn how interactive fiction works in general, then maybe expand from here to improve the story telling methodology and the graphics.  
 
 # Description
